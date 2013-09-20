@@ -1,5 +1,9 @@
 # Django settings for contacts project.
 
+import imp, os
+
+rel = lambda *x: os.path.join(os.path.dirname(os.path.abspath(__file__)), *x)
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -69,6 +73,7 @@ STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
+    rel('static'),
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -83,7 +88,7 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = '3h#$v602i6+2n^$60eyx=!ra#_mfu2gddapnh2(e#8u8yo&$j#'
+SECRET_KEY = 'm6(4k-2_46=wbhw!(4qfc*_h2lpgl4g(h1-4s$_)$@mw0#*^kk'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -108,6 +113,7 @@ ROOT_URLCONF = 'contacts.urls'
 WSGI_APPLICATION = 'contacts.wsgi.application'
 
 TEMPLATE_DIRS = (
+    rel('templates'),
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -125,8 +131,6 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
-
-SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

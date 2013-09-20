@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>meetingpoint</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" media="all" href="/static/styles/bootstrap.min.css" type="text/css">
+	<link rel="stylesheet" media="all" href="/static/styles/main.css" type="text/css">
+	<!--[if lt IE 9]>
+	    <script src="/static/scripts/html5shiv.js"></script>
+	<![endif]-->
+
+	<script type="text/javascript" src="/static/scripts/jquery.min.js"></script>
+</head>
+<body>
+
+	<div class="page">
+		{% block page %}
+
+		{% endblock page %}
+	</div>
+
+	<script data-template="contactRow" type="text/template">
+		<td><%= first_name %></td>
+		<td><%= last_name %></td>
+		<td><%= position %></td>
+		<td><%= phone %></td>
+		<td><a href="#" data-action="model-edit" class="btn btn-primary">edit</a></td>
+		<td>
+			<a href="#" data-action="model-remove" class="btn btn-danger">remove</a>
+		</td>
+		<td>
+			<a href="#" class="btn btn-primary show-collection">show</a>
+		</td>
+	</script>
+
+	<script data-template="editContact" type="text/template">
+		<form action="#" class="edit-contact-form">
+			<fieldset>
+				<div class="form-row">
+					<label>First name</label>
+					<input class="form-control" type="text" id="first_name-field" value="<%= first_name %>">
+				</div>
+				<div class="form-row">
+					<label>Last name</label>
+					<input class="form-control" type="text" id="last_name-field" value="<%= last_name %>">
+				</div>
+				<div class="form-row">
+					<label>Position</label>
+					<input class="form-control" type="text" id="position-field" value="<%= position %>">
+				</div>
+				<div class="form-row">
+					<label>Phone</label>
+					<input class="form-control" type="text" id="phone-field" value="<%= phone %>">
+				</div>
+				<div class="form-row">
+					<button type="submit" class="btn btn-success">save</button>
+					<button data-action="close-edit" type="button" class="btn btn-danger alignright">cansel</button>					
+				</div>
+			</fieldset>
+		</form>
+	</script>
+	
+	<script type="text/javascript" src="/static/scripts/main.js"></script>
+	
+	<script>
+		$(function() {
+			var appRouter = new App.Router;
+
+			appRouter.start();
+
+			App.contacts = new App.Collections.ContactsCollection([
+				{ first_name: "Dmytro",
+					last_name: "Dovgan",
+					position: "Web developer",
+					phone: "123 12 12"
+				}	, {
+					first_name: "Test",
+					last_name: "Testovich",
+					position: "Tester",
+					phone: "321 123 12"
+				}	, {
+					first_name: "zoey",
+					last_name: "washington",
+					position: "smallOstrich",
+					phone: "(471)-543-4073"
+				}	, {
+					first_name: "aiden",
+					last_name: "howard",
+					position: "organicFrog",
+					phone: "(471)-543-4073"
+				}	, {
+					first_name: "alice",
+					last_name: "reed",
+					position: "organicCat",
+					phone: "(471)-543-4073"
+				}
+			]);
+
+			console.log("base.html", App.Views);
+			
+			var application = new App.Views.Application({
+				collection: App.contacts
+			});
+
+		});
+	</script>
+
+	{% block extrajs %}
+		
+	{% endblock extrajs %}
+	
+</body>
+</html>

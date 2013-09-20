@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block page %}
+	
+<div id="app">
+	<div data-role="edit-contact" class="config-block">
+	<!-- edit block here -->
+	</div>
+	<div class="table-block">
+		<table class="table table-striped table-bordered table-hover" id="contactList">
+			<thead>
+				<tr>
+					<td>First Name</td>
+					<td>Last Name</td>
+					<td>Position</td>
+					<td>Phone</td>
+					<td colspan="3">Configure</td>
+				</tr>
+			</thead>
+		</table>
+		<div class="text-right">
+			<a data-action="add-contact" href="#" class="btn btn-success">add contact</a>
+		</div>
+	</div>
+</div>
+
+
+{% endblock page %}
+
+{% block extrajs %}
+{% endblock extrajs %}
