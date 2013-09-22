@@ -1,8 +1,17 @@
 {% extends "base.html" %}
 
 {% block page %}
-	
+
+
 <div id="app">
+	<div class="search-table-block">
+		<div class="form-row">
+			<div class="input-group">
+				<label class="input-group-addon" for="search-field">Search contacts</label>
+				<input id="search-field" class="form-control" type="text" autofocus>
+			</div>
+		</div>
+	</div>
 	<div data-role="edit-contact" class="config-block">
 	<!-- edit block here -->
 	</div>

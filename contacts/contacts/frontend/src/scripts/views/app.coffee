@@ -16,6 +16,8 @@ class App.Views.Application extends Backbone.View
 		contactsView = new App.Views.ContactsCollectionView
 			collection: @collection
 
+		new App.Views.SearchContactsView
+
 		$('#contactList').append contactsView.render().el
 
 		$('[data-action="add-contact"]').on 'click', @addContact

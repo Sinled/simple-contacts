@@ -44,7 +44,6 @@ class App.Views.ContactView extends Backbone.View
 		@remove()
 
 
-
 #------------------------------------------------------------------------------
 # contact collection view
 #------------------------------------------------------------------------------
@@ -54,11 +53,14 @@ class App.Views.ContactsCollectionView extends Backbone.View
 
 	initialize: ->
 		App.vent.on 'addContact:contact', @addNew
+		App.vent.on 'search:contact', @filterContacts
+
 		console.log "init ContactsCollectionView" if DEBUG
 
 		@collection.on 'add', @addOne
 		@collection.on 'change', ->
 			console.log "collection changed" if DEBUG
+
 
 	events:
 		'click .show-collection': 'showCollection'
@@ -81,3 +83,10 @@ class App.Views.ContactsCollectionView extends Backbone.View
 	showCollection: (event) ->
 		event.preventDefault()
 		console.log 'ContactsCollectionView', @collection if DEBUG
+
+	filterContacts: (query) =>
+		console.log query if DEBUG
+		allRows = @$el.find('tr')
+		allRows.hide()
+
+		allRows.filter(':contains("' + query + '")').show().toLowerCase()

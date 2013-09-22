@@ -340,7 +340,7 @@ body {
 .config-block {
   float: right;
   width: 30%;
-  padding: 0 10px;
+  padding: 0 0 0 10px;
   margin: 0 0 0 10px;
 }
 
@@ -349,17 +349,22 @@ body {
   vertical-align: middle !important;
 }
 /* line 31, ../../src/styles/partials/_layout.scss */
-.table td:first-child + td, .table td:first-child {
+.table td:first-child + td + td, .table td:first-child + td, .table td:first-child {
   text-transform: capitalize;
 }
 
-/* line 38, ../../src/styles/partials/_layout.scss */
+/* line 39, ../../src/styles/partials/_layout.scss */
 .form-row {
   padding: 10px 0 0;
 }
-/* line 43, ../../src/styles/partials/_layout.scss */
+/* line 44, ../../src/styles/partials/_layout.scss */
 .form-row:first-child {
   padding-top: 0;
+}
+
+/* line 49, ../../src/styles/partials/_layout.scss */
+.search-table-block {
+  margin: 0 0 10px;
 }
 
 /* line 1, ../../src/styles/partials/_helpers.scss */

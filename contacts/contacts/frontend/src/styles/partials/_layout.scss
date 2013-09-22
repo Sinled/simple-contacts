@@ -20,7 +20,7 @@ body {
 .config-block {
 	float: right;
 	width: 30%;
-	padding: 0 10px;
+	padding: 0 0 0 10px;
 	margin: 0 0 0 10px;
 }
 
@@ -28,6 +28,7 @@ body {
 	td {
 		vertical-align: middle !important;
 
+		&:first-child + td + td,
 		&:first-child + td,
 		&:first-child {
 			text-transform: capitalize;
@@ -43,4 +44,9 @@ body {
 	&:first-child {
 		padding-top: 0;
 	}
+}
+
+.search-table-block {
+	margin: 0 0 10px;
+
 }

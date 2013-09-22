@@ -3016,6 +3016,7 @@ var DEBUG = true;
       contactsView = new App.Views.ContactsCollectionView({
         collection: this.collection
       });
+      new App.Views.SearchContactsView;
       $('#contactList').append(contactsView.render().el);
       return $('[data-action="add-contact"]').on('click', this.addContact);
     };
@@ -3122,6 +3123,7 @@ var DEBUG = true;
     __extends(ContactsCollectionView, _super);
 
     function ContactsCollectionView() {
+      this.filterContacts = __bind(this.filterContacts, this);
       this.addNew = __bind(this.addNew, this);
       this.addOne = __bind(this.addOne, this);
       this.render = __bind(this.render, this);
@@ -3133,6 +3135,7 @@ var DEBUG = true;
 
     ContactsCollectionView.prototype.initialize = function() {
       App.vent.on('addContact:contact', this.addNew);
+      App.vent.on('search:contact', this.filterContacts);
       if (DEBUG) {
         console.log("init ContactsCollectionView");
       }
@@ -3176,6 +3179,16 @@ var DEBUG = true;
       if (DEBUG) {
         return console.log('ContactsCollectionView', this.collection);
       }
+    };
+
+    ContactsCollectionView.prototype.filterContacts = function(query) {
+      var allRows;
+      if (DEBUG) {
+        console.log(query);
+      }
+      allRows = this.$el.find('tr');
+      allRows.hide();
+      return allRows.filter(':contains("' + query + '")').show().toLowerCase();
     };
 
     return ContactsCollectionView;
@@ -3249,6 +3262,47 @@ var DEBUG = true;
     };
 
     return EditContactView;
+
+  })(Backbone.View);
+
+}).call(this);
+
+//@ sourceMappingURL=searchContacts.map
+(function() {
+  'use strict';
+  var _ref,
+    __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  App.Views.SearchContactsView = (function(_super) {
+    __extends(SearchContactsView, _super);
+
+    function SearchContactsView() {
+      this.searchContacts = __bind(this.searchContacts, this);
+      _ref = SearchContactsView.__super__.constructor.apply(this, arguments);
+      return _ref;
+    }
+
+    SearchContactsView.prototype.el = '.search-table-block';
+
+    SearchContactsView.prototype.initialize = function() {
+      var searchField;
+      if (DEBUG) {
+        console.log('init SearchContactView');
+      }
+      searchField = this.$('#search-field');
+      if (DEBUG) {
+        console.log(searchField);
+      }
+      return searchField.on('keyup', this.searchContacts);
+    };
+
+    SearchContactsView.prototype.searchContacts = function(event) {
+      return App.vent.trigger('search:contact', $(event.target).val());
+    };
+
+    return SearchContactsView;
 
   })(Backbone.View);
 
