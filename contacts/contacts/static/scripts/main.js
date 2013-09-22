@@ -2947,7 +2947,7 @@ var DEBUG = true;
     };
 
     AddContactView.prototype.render = function() {
-      this.$el.html(this.template(this.model.toJSON()));
+      this.$el.html(this.template(this.model.attributes));
       return this;
     };
 
@@ -3081,7 +3081,7 @@ var DEBUG = true;
       if (DEBUG) {
         console.log('render');
       }
-      this.$el.html(this.template(this.model.toJSON()));
+      this.$el.html(this.template(this.model.attributes));
       return this;
     };
 
@@ -3226,7 +3226,7 @@ var DEBUG = true;
     };
 
     EditContactView.prototype.render = function() {
-      this.$el.html(this.template(this.model.toJSON()));
+      this.$el.html(this.template(this.model.attributes));
       return this;
     };
 

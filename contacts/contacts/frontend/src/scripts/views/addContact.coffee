@@ -16,7 +16,7 @@ class App.Views.AddContactView extends Backbone.View
 		'click [data-action="close-edit"]': 'closeEdit'
 
 	render: ->
-		@$el.html @template(@model.toJSON())
+		@$el.html @template(@model.attributes)
 		return @
 
 	addContact: (event) ->

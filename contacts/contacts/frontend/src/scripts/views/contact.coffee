@@ -20,7 +20,7 @@ class App.Views.ContactView extends Backbone.View
 
 	render: ->
 		console.log 'render' if DEBUG
-		@$el.html @template(@model.toJSON())
+		@$el.html @template(@model.attributes)
 		return @
 
 	editModel: (event) =>
